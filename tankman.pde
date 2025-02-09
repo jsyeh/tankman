@@ -9,6 +9,7 @@ PImage [] imgGrass = new PImage[3];
 PImage [][] imgMap = new PImage[H+1][W]; // 下方多一行亂數的草地
 int teamScore1, teamScore2;
 Tank tank1;
+Tank tank2;
 
 void setup() {
   size(1000,700);
@@ -29,7 +30,8 @@ void setup() {
     for(int j=0; j<W; j++) {
       csv[i][j] = csv1D[i*W+j];
       imgMap[i][j] = imgGrass[int(random(3))];
-      if(csv[i][j]==1) tank1 = new Tank(i,j);
+      if(csv[i][j]==1) tank1 = new Tank1(i, j);
+      if(csv[i][j]==2) tank2 = new Tank2(i, j);
     }
   }
   for(int j=0; j<W; j++) imgMap[H][j] = imgGrass[int(random(3))];
@@ -42,7 +44,7 @@ void draw() {
   image(imgHour[(frameCount/10)%15], 0, 0, 25, 25);
   fill(255,0,0);
   textSize(25);
-  text("Frame: "+((1000-frameCount)+1000)%1000, 836, 25);
+  text("Frame: "+((1000-frameCount)%1000+1000)%1000, 836, 25);
   for(int i=0; i<H+1; i++) {
     for(int j=0; j<W; j++) {
       image(imgMap[i][j], j*S, 50+i*S, S, S);
@@ -56,6 +58,8 @@ void draw() {
   
   tank1.update();
   tank1.draw();
+  tank2.update();
+  tank2.draw();
   
   fill(#5F90F7, 128);
   rect(0,650,500,100);
