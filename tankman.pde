@@ -1,5 +1,5 @@
-//int H = 12, W = 20, S = 50; // 小地圖，用手動註解切換
-int H = 24, W = 40, S = 25; // 大地圖，用手動註解切換
+int H = 12, W = 20, S = 50; // 小地圖，用手動註解切換
+//int H = 24, W = 40, S = 25; // 大地圖，用手動註解切換
 
 int [] csv1D; // 會依照 H 的值，決定用哪個陣列：12用小地圖，24用大地圖
 int [][] csv = new int[H+1][W]; // 下方多一行亂數的草地
@@ -8,6 +8,7 @@ PImage imgTank1, imgTank2, imgWall, imgBullets, imgOil;
 PImage [] imgGrass = new PImage[3];
 PImage [][] imgMap = new PImage[H+1][W]; // 下方多一行亂數的草地
 int teamScore1, teamScore2;
+Tank tank1;
 
 void setup() {
   size(1000,700);
@@ -28,6 +29,7 @@ void setup() {
     for(int j=0; j<W; j++) {
       csv[i][j] = csv1D[i*W+j];
       imgMap[i][j] = imgGrass[int(random(3))];
+      if(csv[i][j]==1) tank1 = new Tank(i,j);
     }
   }
   for(int j=0; j<W; j++) imgMap[H][j] = imgGrass[int(random(3))];
@@ -44,13 +46,17 @@ void draw() {
   for(int i=0; i<H+1; i++) {
     for(int j=0; j<W; j++) {
       image(imgMap[i][j], j*S, 50+i*S, S, S);
-      if(csv[i][j] == 1) image(imgTank1, j*S, 50+i*S, S, S);
-      if(csv[i][j] == 2) image(imgTank2, j*S, 50+i*S, S, S);
+      //if(csv[i][j] == 1) image(imgTank1, j*S, 50+i*S, S, S);
+      //if(csv[i][j] == 2) image(imgTank2, j*S, 50+i*S, S, S);
       if(csv[i][j] == 3) image(imgWall, j*S, 50+i*S, S, S);
       if(csv[i][j] == 4) image(imgBullets, j*S, 50+i*S, S, S);
       if(csv[i][j] == 5) image(imgOil, j*S, 50+i*S, S, S);
     }
   }
+  
+  tank1.update();
+  tank1.draw();
+  
   fill(#5F90F7, 128);
   rect(0,650,500,100);
   fill(#72F720, 128);
