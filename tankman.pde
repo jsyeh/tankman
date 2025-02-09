@@ -5,6 +5,7 @@ int [] csv1D; // 會依照 H 的值，決定用哪個陣列：12用小地圖，2
 int [][] csv = new int[H+1][W]; // 下方多一行亂數的草地
 PImage [] imgHour = new PImage[15];
 PImage imgTank1, imgTank2, imgWall, imgBullets, imgOil;
+PImage imgTank1body, imgTank2body, imgTank1gun, imgTank2gun;
 PImage [] imgGrass = new PImage[3];
 PImage [][] imgMap = new PImage[H+1][W]; // 下方多一行亂數的草地
 int teamScore1, teamScore2;
@@ -18,6 +19,11 @@ void setup() {
   for(int i=0; i<15; i++) imgHour[i] = loadImage("hourglass_"+i+".png");
   imgTank1 = loadImage("1P.png");
   imgTank2 = loadImage("2P.png");
+  imgTank1body = loadImage("1P_body.png");
+  imgTank2body = loadImage("2P_body.png");
+  imgTank1gun = loadImage("1P_gun.png");
+  imgTank2gun = loadImage("2P_gun.png");
+  
   imgWall = loadImage("wall.png");
   imgBullets = loadImage("bullets.png");
   imgOil = loadImage("oil.png");
@@ -48,8 +54,6 @@ void draw() {
   for(int i=0; i<H+1; i++) {
     for(int j=0; j<W; j++) {
       image(imgMap[i][j], j*S, 50+i*S, S, S);
-      //if(csv[i][j] == 1) image(imgTank1, j*S, 50+i*S, S, S);
-      //if(csv[i][j] == 2) image(imgTank2, j*S, 50+i*S, S, S);
       if(csv[i][j] == 3) image(imgWall, j*S, 50+i*S, S, S);
       if(csv[i][j] == 4) image(imgBullets, j*S, 50+i*S, S, S);
       if(csv[i][j] == 5) image(imgOil, j*S, 50+i*S, S, S);

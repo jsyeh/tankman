@@ -8,7 +8,14 @@ class Tank1 extends Tank {
       translate(S/2,S/2);
       rotate(radians(angle-180));
       translate(-S/2,-S/2);
-      image(imgTank1, 0, 0, S, S);    
+      //image(imgTank1, 0, 0, S, S);
+      image(imgTank1body, 0, 0, S, S);
+      pushMatrix();
+        translate(S/2,S/2);
+        rotate(radians(gun_angle-180));
+        translate(-S/2,-S/2);
+        image(imgTank1gun, 0, 0, S, S);
+      popMatrix();
     popMatrix();
   }
   boolean keepPressed = false;
@@ -25,6 +32,8 @@ class Tank1 extends Tank {
       keepPressed = true;
     }
     if(!keyPressed) keepPressed = false;
+    int dx = mouseX-x-S/2, dy = mouseY-y-100+S/2;
+    gun_angle = int(degrees(atan2(dy, dx)));
   }
 }
 
@@ -38,7 +47,13 @@ class Tank2 extends Tank {
       translate(S/2,S/2);
       rotate(radians(angle));
       translate(-S/2,-S/2);
-      image(imgTank2, 0, 0, S, S);    
+      image(imgTank2, 0, 0, S, S);
+      pushMatrix();
+        translate(S/2,S/2);
+        rotate(radians(gun_angle));
+        translate(-S/2,-S/2);
+        image(imgTank2gun, 0, 0, S, S);
+      popMatrix();
     popMatrix();
   }
   boolean keepPressed = false;
@@ -55,6 +70,8 @@ class Tank2 extends Tank {
       keepPressed = true;
     }
     if(!keyPressed) keepPressed = false;
+    int dx = mouseX-x-S/2, dy = mouseY-y-100+S/2;
+    gun_angle = int(degrees(atan2(dy, dx)));
   }
 }
 
