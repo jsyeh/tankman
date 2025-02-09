@@ -11,3 +11,4 @@
 - 00 第一步，先將素材準備好，圖片來源：[siangting/TankMan_student](https://github.com/siangting/TankMan_student/tree/main/asset/image)
 - 01 檢視圖檔，看到 grass_0.png .. grass_2.png 有3張草地的圖，檢查發現是「亂數」決定的，所以模仿亂數，畫出草地
 - 01 在 maps 資料夾裡的 map_1_v_1.tmx 看到 1對1 對戰地圖的 csv 格式（3代表牆），我就把它貼到陣列，畫出牆
+- 02 地圖看起來很粗，檢查發現 maps 裡，還有其他大小的地圖，所以我需要兩種不同地圖的大小，用不同陣列、不同變數來做
